@@ -204,22 +204,10 @@ ul li:hover{
 
 }
 
-/* .close{
-	text-align: right;
-	color: #2f91a0;
-	display: flex;
-	justify-content: right;
-	width: 21px;
-	
-} */
-
 .close{
 	color: #2f91a0;
-	display: block;
-	position: relative;
-	left: 1px;
-	
 }
+
 
 
 .todo{
