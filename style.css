@@ -176,10 +176,8 @@ ul li{
 	margin-bottom: 8px;
 	padding: 5px;
 	cursor: move;
-
-	/* display: flex;
-	align-items: right; */
 }
+
 
 ul li:hover{
 	background-color: rgb(235, 231, 182,0.5);
@@ -210,8 +208,8 @@ ul li:hover{
 
 .close{
 	color: #2f91a0; 
-	display: flex;
-	align-items: right;
+	text-align: right;
+
 }
 
 
