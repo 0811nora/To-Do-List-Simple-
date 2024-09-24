@@ -178,10 +178,6 @@ ul li{
 	cursor: move;
 }
 
-ul li span{
-	text-align: right;
-}
-
 ul li:hover{
 	background-color: rgb(235, 231, 182,0.5);
 }
@@ -211,7 +207,10 @@ ul li:hover{
 .close{
 	text-align: right;
 	color: #2f91a0;
+	display: block;
+	
 }
+
 
 .todo{
 	display:flex;
