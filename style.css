@@ -207,7 +207,8 @@ ul li:hover{
 .close{
 	text-align: right;
 	color: #2f91a0;
-	display: block;
+	display: flex;
+	justify-content: right;
 	
 }
 
