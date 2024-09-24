@@ -177,12 +177,8 @@ ul li{
 	padding: 5px;
 	cursor: move;
 
-	display: flex;
-    align-items: center;
-}
-
-ul li::after{
-	flex-grow: 1;
+	/* display: flex;
+	align-items: right; */
 }
 
 ul li:hover{
@@ -213,8 +209,9 @@ ul li:hover{
 }
 
 .close{
-	color: #2f91a0;
-	margin-left: auto; 
+	color: #2f91a0; 
+	display: flex;
+	align-items: right;
 }
 
 
