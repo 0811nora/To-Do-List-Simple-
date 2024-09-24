@@ -105,6 +105,7 @@ body{
 	padding: 10px 10px;
 	background-color: #c2e7e9;
 	border: #FBF9F1 inset 3px;
+	font-size: 20px;
 
 }
 
@@ -240,6 +241,7 @@ ul li:hover{
 	}
 	.input-box{
 		height: 40px;
+		font-size: 16px;
 	}
 	.input-box::placeholder{
 		font-size: 14px;
@@ -258,6 +260,9 @@ ul li:hover{
 	}
 	ul{
 		padding: 0 16px;
+	}
+	ul li{
+		font-size: 16px;
 	}
 }
 
