@@ -179,7 +179,7 @@ ul li{
 }
 
 ul li span{
-
+	text-align: right;
 }
 
 ul li:hover{
