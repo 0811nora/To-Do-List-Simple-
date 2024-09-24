@@ -176,6 +176,9 @@ ul li{
 	margin-bottom: 8px;
 	padding: 5px;
 	cursor: move;
+
+	display: flex;
+    align-items: center;
 }
 
 ul li::after{
@@ -211,6 +214,7 @@ ul li:hover{
 
 .close{
 	color: #2f91a0;
+	margin-left: auto; 
 }
 
 
