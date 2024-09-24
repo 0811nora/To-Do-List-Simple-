@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playpen+Sans:wght@100..800&family=Sofadi+One&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+    <!-- <script src="Sortable.js"></script> -->
+    <script src="all.js" defer></script>
+
+    <title>To Do List</title>
+</head>
+<body>
+    <div class="container">
+        <div class="wrapper">
+            <div class="alert">待辦事項為必填!</div>
+            <h3>TO DO LIST
+                <i class='bx bx-notepad'></i>
+            </h3>
+            <h5>待辦清單</h5>
+            <div class="row">
+                <input type="text" class="input-box" placeholder="新增待辦事項...">
+                <button type="button" class="add-btn">
+                    <span>新增</span>
+                    <i class='bx bx-message-square-add' ></i>
+                </button>
+            </div>
+            <ul class="list-container"></ul>
+
+            <div class="to-do-list">
+                <div class="todo">
+                    <button type="button" class="clear">清除全部事項</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>
+
