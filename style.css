@@ -206,19 +206,16 @@ ul li:hover{
 
 }
 
-.close{
-	position: relative;
-	top: 0;
-	right: 0;
-}
 
-ul li span{
-	color: #4fb3c2; 
+ul li span.close{
+	color: #3c9ead; 
 	text-align: right;
-	/* margin-left: 50px; */
+	margin-left: 10px;
 	position: relative;
 	top: 0;
 	right: 0;
+	width: 20px;
+	height: 20px;
 }
 
 
