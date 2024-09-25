@@ -213,9 +213,13 @@ ul li:hover{
 }
 
 ul li span{
+	display: block;
 	color: #4fb3c2; 
 	text-align: right;
-	margin-left: 50px;
+	/* margin-left: 50px; */
+	position: relative;
+	top: 0;
+	right: 0;
 }
 
 
