@@ -144,74 +144,97 @@ listContainer.addEventListener("touchstart",function(e){
     }
 });
 
-/*
-//手指在螢幕上面滑動[check box]的位置時，取消打勾，這樣移動後項目就不會有打勾
-listContainer.addEventListener("touchmove" , function(e){  //手指在屏幕上移動時觸發
-    if(e.target.tagName == "LI"){
-        e.target.classList.remove("checked");
-        e.target.style.backgroundColor = "gainsboro";  //背景變成灰色
-    }
-});
-*/
+
 
 // ---- li 中的[刪除鍵] 效果 ----
 // 手機版
-listContainer.addEventListener("touchend" ,function(e){  //手指從屏幕移開時觸發
-    if(e.target.tagName == "SPAN"){  //如果點的是span，那就移除 LI
+listContainer.addEventListener("touchend" ,function(e){  
+    // touchend: 手指從屏幕移開時觸發
+    if(e.target.tagName == "SPAN"){  
         e.target.closest("li").remove(); 
     }
-    // }else if(e.target.tagName == "LI"){  //如果點的是LI，那背景就變透明色
-    //     e.target.style.backgroungColor = "transparent";
-    // }
 });
 
+
+// ---- 清除全部項目按鈕 ---
+// 監聽按鈕按下時，執行 "clearData"函式
 clearBtn.addEventListener("click" ,clearData);
 
 function clearData(){
     let yes = confirm("是否將所有資料刪除??")
+    // 宣告 yes 就是 彈跳視窗Confirm Box的代號
+    // 語法 :.confirm("彈跳視窗想要顯示的文字")，待配if else使用。
+
     if(yes){
-        localStorage.clear();
+        localStorage.clear();  
         listContainer.innerHTML = "";
-        console.log("執行-資料刪除")
-    }else{
-        console.log("取消執行-刪除資料")
     };
-    
+        // 如果按下[確認]鈕(表示yes = ture)，執行清除localStorage指令
+        // 並將 listContainer 變成空值
+        
 };
 
 
-
+// ---- 儲存資料到localStorage ---- 
 function saveData() {
-    const tasks = []; //創建一個空陣列，用來存放每個待辦事項的物件資料。
-    listContainer.querySelectorAll("li").forEach(li => { // 遍歷每個 li 元素
-        const task = {  //建立物件
-            text: li.textContent, // 取得該 li 的文字內容，並存入物件的 text 屬性。
-            checked: li.querySelector("input[type='checkbox']").checked //取得該 li 內 checkbox 的 checked 狀態，並存入 task 物件的 checked 屬性。
-        };
-        tasks.push(task); //將每個 li 的待辦事項物件（包含文字和勾選狀態）加入到 tasks 陣列中。
-    });
-    localStorage.setItem("tasks", JSON.stringify(tasks)); //將 tasks 陣列轉換為 JSON 字串，並存入 localStorage
+    const tasks = []; 
+    //創建一個空陣列，用來存放每個待辦事項的物件資料。
+    
+    listContainer.querySelectorAll("li").forEach(li => { 
+        // .querySelectorAll("li"): 選擇 listContainer 元素內所有的 <li> 標籤
+        // .forEach: 對每個 listContainer 中的 <li> 執行函式裡的動作
+        // 回呼函式(li => {...})：這個函式叫做li
 
-    //在使用 localStorage.setItem() 時，將資料轉換成 JSON 格式 (JSON.stringify()) 是因為 localStorage 只能儲存 字串 (string) 格式的資料。這也就是為什麼您必須先將物件或陣列等複雜資料結構轉換成字串後，才能使用 localStorage.setItem() 進行儲存。
+        const task = {  
+            text: li.textContent, 
+            checked: li.querySelector("input[type='checkbox']").checked 
+            // 建立物件 task
+            // text: 取得該 li 的文字內容，並存入物件的 text 屬性。
+            // checked: 取得該 li 內 checkbox 的 checked 狀態，並存入 task 物件的 checked 屬性。
+        };
+        tasks.push(task); 
+        // .push(task): 在陣列最後方加入新元素
+        // 將每個 li 的待辦事項物件（包含文字和勾選狀態）加入到 tasks 陣列中。
+    });
+
+    localStorage.setItem("tasks", JSON.stringify(tasks)); 
+    // 將 tasks 陣列轉換為 JSON 字串，並存入 localStorage
+    // setItem(key, value)：用來在 localStorage 中儲存資料的方法。它需要兩個參數：
+    // --------- key：代表儲存資料的名稱
+    // --------- value：代表要儲存的資料內容。
+    // JSON.stringify(): 將 JavaScript 資料轉換成 JSON 格式字串的方法。
+
+    // 在使用 localStorage.setItem() 時，
+    // 將資料轉換成 JSON 格式是因為 localStorage 只能儲存字串 (string) 格式的資料。
+    // 這也就是為什麼必須先將物件或陣列轉換成字串後，才能使用 localStorage.setItem()進行儲存。
 }
 
+// ---- 將儲存的資料顯示出來 (重建UI) ----
 function showTask() {
-    const tasks = JSON.parse(localStorage.getItem("tasks")) || []; //從 localStorage 讀取之前儲存的資料，使用 JSON.parse() 將其轉換為物件陣列。若無資料則回傳空陣列。
-    tasks.forEach(task => { //遍歷 tasks 陣列，為每個待辦事項創建對應的 li 和 checkbox。
+    const tasks = JSON.parse(localStorage.getItem("tasks")) || []; 
+    // JSON.parse(): 用來將字串轉換成 JavaScript 的物件或陣列
+    // 因從 localStorage 取得的資料是 JSON 格式的字串，需要使用 JSON.parse() 將它轉換回 JavaScript 資料型別
+    // localStorage.getItem("tasks"): 用來從 localStorage 中取得 "tasks" 的資料，取出的資料是 字串格式
+    // || []: 如果 localStorage 沒有存任何 "tasks"，就會使用一個預設的空陣列
+    
+
+    tasks.forEach(currentTask => { 
         let li = document.createElement("li"); 
-        li.textContent = task.text; //將儲存的文字內容加到 li 元素中
+        li.textContent = currentTask.text; 
 
         let checkbox = document.createElement("input");
         checkbox.setAttribute("type", "checkbox");
         checkbox.className = "todo-check";
 
-        // 根據儲存的資料設置 checkbox 是否被勾選
-        if (task.checked) {
+        
+        if (currentTask.checked) {
             checkbox.checked = true;
-            li.classList.add("completed"); // 也加上完成樣式
+            li.classList.add("completed"); 
         }
 
         li.insertBefore(checkbox, li.firstChild);
+        // insertBefore: 用來插入元素的方法，將一個新的元素插入到某個父元素的現有子元素之前
+        // 將 checkbox 加到 li 的最前面
 
         checkbox.addEventListener("change", function() {
             if (this.checked) {
@@ -219,7 +242,7 @@ function showTask() {
             } else {
                 li.classList.remove("completed");
             }
-            saveData(); // 每次變更狀態時儲存
+            saveData(); 
         });
 
         let span = document.createElement("span");
@@ -227,13 +250,19 @@ function showTask() {
         span.innerHTML = "<i class='bx bxs-message-square-x'></i>";
         li.appendChild(span);
 
-        listContainer.appendChild(li); // 把 li 加到清單中
+        listContainer.appendChild(li); 
     });
 }
-showTask();
+showTask(); 
+// 執行將資料顯示出來
 
 new Sortable(listContainer,{  //要在html中加入拖曳套件後才可以使用
     animation: 200,
+
+    // Sortable() 是一個建構函式，用來建立可拖放排序的功能。
+    // listContainer 是一個指向要進行拖放排序的父元素
+    // {}中，可以用來配置拖放行為
+    // animation 設置了拖放操作完成後，元素在新位置上進行動畫的時間
 });
 
 
